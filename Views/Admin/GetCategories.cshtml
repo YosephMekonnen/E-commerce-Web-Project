@@ -1,0 +1,43 @@
+﻿@model IEnumerable<E_commerce_Web_Project.DB.Category>
+
+@{
+    ViewBag.Title = "GetCategories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>Categories</h2>
+
+    <p class="pull-right">
+        @Html.ActionLink("Add New", "AddCategory", new {style="padding:10px;" },new { @class = "btn btn-primary" })
+    </p>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th width="200px">@Html.DisplayName("Actions")</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditCategory", new { id = item.CategoryId },new {@class="btn btn-primary" }) |
+                    @Html.ActionLink("Delete", "DeleteCategory", new { id = item.CategoryId },new{ @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

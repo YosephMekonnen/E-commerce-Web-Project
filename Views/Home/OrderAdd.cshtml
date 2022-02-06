@@ -1,0 +1,36 @@
+﻿
+<form action="~/Home/Checkout" method="post">
+    <table class='half-input-table'>
+        <tr>
+            <td>
+                Customer Full Name
+                <input class='input-field' id="CustomerName" name="CustomerName" />
+
+            </td>
+
+        </tr>
+        <tr>
+
+            <td>
+                Address
+                <input class='input-field' id="Address" name="Address" />
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                Phone-number
+                <input class='input-field' id="PhoneNumber" name="phoneNumber" />
+            </td>
+        </tr>
+   
+        <tr>
+
+            <td>
+                Net-Amount
+                <input class='input-field' value="@Session["total"]" name="NetAmount" readonly />
+            </td>
+        </tr>
+    </table>
+    <button type="submit" class='pay-btn'>Order</button>
+</form>

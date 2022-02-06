@@ -1,0 +1,61 @@
+﻿@model List<E_commerce_Web_Project.DB.Product>
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .container-table{
+        width:70%;
+        margin:0 auto;
+    }
+    
+</style>
+<div class="container-table">
+    <h2>All Products</h2>
+
+    <p class="pull-right">
+        @Html.ActionLink("Create New Product", "Create", new { style = "padding:10px;" }, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th width="200px">Product ID</th>
+                <th width="100px">ProductImage</th>
+                <th width="400px">Product Name</th>
+                <th width="200px">Price</th>              
+                <th width="200px">Is Active</th>
+                <th width="300px">Created Date</th>
+                <th width="100px">Stock</th>
+                <th width="300px">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var items in Model)
+        {
+    <tr>
+      <td>@items.ProductId</td>
+        <td>
+            <img src="~/ProductImg/@items.ProductImage"
+                 alt="" height="80">
+        </td>
+        <td>@items.ProductName</td>
+        <td>@items.Price</td>
+        <td>@items.IsActive</td>
+        <td>@items.CreatedDate</td>
+        <td>@items.Stock</td>
+      
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = items.ProductId }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Delete", "Delete","Admin",new { id = items.ProductId }, new { @class = "btn btn-danger" })
+          
+        </td>
+    </tr>
+        }
+            </tbody>
+
+    </table>
+</div>
+

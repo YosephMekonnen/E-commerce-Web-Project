@@ -1,0 +1,36 @@
+﻿
+@model List<E_commerce_Web_Project.DB.Product>
+
+@{
+    ViewBag.Title = "OurProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<h1 style="text-align:center; margin-top:150px;">Search by Category</h1>
+<form method="get">
+
+
+    <div class="Search">
+        <input type="text" placeholder="Search by Category" name="search" class="input" />
+
+
+        <div class="btn-container">
+            <button type="submit" class="searchbtn">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+</form>
+
+
+@{
+    Html.RenderPartial("ProductFilter");
+}
+
+<script src="~/Scripts/Cart.js"></script>

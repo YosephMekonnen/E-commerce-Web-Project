@@ -1,0 +1,55 @@
+﻿@model List<E_commerce_Web_Project.DB.Product>
+
+
+
+<div class="product">
+
+    <div class="product-header">
+       
+    </div>
+    <div class="products-items">
+        @foreach (var items in Model)
+        {
+
+            <div class="item-1">
+                <img src="~/ProductImg/@items.ProductImage"
+                     alt="" height="276">
+                <h3>@items.ProductName</h3>
+                @{
+                    if (items.IsActive == true)
+                    {
+
+
+                        <p>Is Active</p>
+                    }
+                    else
+                    {
+                        <p>Not Acitve</p>
+                    }
+                }
+                <p style="color:grey;">@items.ProductDetails</p>
+                <p class="price">$@items.Price</p>
+                @if (items.Stock > 0)
+                {
+
+                    <a href="@Url.Action("AddtoCart","Home",new {productId=items.ProductId })" name="AddToCart" itemid="@items.ProductId">Buy Now</a>
+
+                }
+                else
+                {
+                    <p>Out of Stock</p>
+                }
+
+            </div>
+        }
+
+       
+
+
+    </div>
+
+
+
+
+</div>
+

@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { style = "color:white;",title = "Manage" })
+            </li>
+         
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right"  }))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <ul class="navbar-nav ml-auto ml-md-0">
+
+            <li class="nav-item nav-profile dropdown" >
+                <a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown" id="profileDropdown">
+                    <img src="~/Admin_Lay/images/faces/face28.jpg" alt="profile" width="30" style="border-radius:50%;padding:0;" />
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                   @* <a href="#" class="dropdown-item">
+                        <i class="ti-settings text-primary"></i>
+                        Settings
+                    </a>*@
+                    @Html.ActionLink("Settings", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage",@class= "dropdown-item" })
+                    <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">
+                        <i class="ti-settings text-primary"></i>
+                        Logout
+                    </a>
+
+                </div>
+            </li>
+
+        </ul>
+    }
+}

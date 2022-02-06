@@ -1,0 +1,47 @@
+﻿@model IEnumerable<E_commerce_Web_Project.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "AdminManage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+
+    <h2>Admin Management</h2>
+
+@*    <p>
+        @Html.ActionLink("Create New", "AddAdmin", new { style = "padding:10px;" }, new { @class = "btn btn-primary" })
+    </p>*@
+    <table class="table table-bordered">
+        <thead style="background-color:black; color:white;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                
+
+
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+
+       
+
+
+        <td>
+         
+            @Html.ActionLink("Details", "AdminDetails", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "DeleteAdmin", new { id = item.Id })
+        </td>
+    </tr>
+        }
+
+    </table>
+
+</div>

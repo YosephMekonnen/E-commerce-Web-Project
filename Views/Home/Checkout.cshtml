@@ -1,0 +1,116 @@
+﻿@using E_commerce_Web_Project.Models
+@using E_commerce_Web_Project.DB
+@{
+    ViewBag.Title = "Checkout";
+
+}
+@{
+    int Total = 0;
+}
+
+<div class='container-card'>
+    <div class='window'>
+        <div class='order-info'>
+            <div class='order-info-content'>
+                <h2>Order Summary</h2>
+                <div class='line'></div>
+                <table class='order-table'>
+                    @if (Session["cart"] != null)
+                    {
+                        foreach (Item items in (List<Item>)Session["cart"])
+                        {
+                            int lineTotal = Convert.ToInt32(items.Stock * items.Product.Price);
+                            Total = Convert.ToInt32(Total + lineTotal);
+                            Session["total"] = Total;
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="~/ProductImg/@items.Product.ProductImage" alt="item1" width="80" />
+                                    </td>
+                                    <td>
+                                        <br> <span class='thin'>@items.Product.ProductName</span>
+                                        <br><span> @items.Product.ProductDetails<br><br></span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class='prices'>$@items.Product.Price</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    }
+                </table>
+                <div class='line'></div>
+
+                <div class='total'>
+
+                    <span style='float:left;'>
+                      @*  <div class='thin dense'>VAT 19%</div>
+                        <div class='thin dense'>Delivery</div>*@
+                        TOTAL
+                    </span>
+                    <span style='float:right; text-align:right;'>
+                     @*   <div class='thin dense'>$68.75</div>
+                        <div class='thin dense'>$4.95</div>*@
+                        $@Total
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class='credit-info'>
+            <div class='credit-info-content'>
+
+
+
+                <form action="~/Home/Checkout" method="post">
+                    <table class='half-input-table'>
+                        <tr>
+                            <td>
+                                Customer Full Name
+                                <input class='input-field' name="CustomerName" id="CustomerName" required />
+
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td>
+                                Address
+                                <input class='input-field' id="Address" name="Address" required />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                Phone-number
+                                <input class='input-field' name="PhoneNumber" id="PhoneNumber" required />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                Date and time
+                                <input class='input-field' id="date" type="datetime" value="@DateTime.Now.ToString()" name="OrderDate" />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                Net-Amount
+                                <input class='input-field' value="@Session["total"]" name="NetAmount" id="NetAmount" readonly />
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit" class='pay-btn'>Order</button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/Cart.js"></script>
+<script src="~/Scripts/Custom.js"></script>

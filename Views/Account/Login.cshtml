@@ -1,0 +1,156 @@
+﻿@using E_commerce_Web_Project.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    
+
+}
+
+<style>
+
+  
+
+    .brand-wrapper {
+        margin-bottom: 19px;
+    }
+
+        .brand-wrapper .logo {
+            height: 37px;
+        }
+
+    .login-card {
+        border: 0;
+        border-radius: 27.5px;
+        box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+        overflow: hidden;
+    }
+
+    .login-card-img {
+        border-radius: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+
+    .login-card .card-body {
+        padding: 85px 60px 60px;
+    }
+
+    .login-card-description {
+        font-size: 25px;
+        color: #000;
+        font-weight: normal;
+        margin-bottom: 23px;
+    }
+
+    .login-card form {
+        max-width: 326px;
+    }
+
+    .login-card .form-control {
+        border: 1px solid #d5dae2;
+        padding: 15px 25px;
+        margin-bottom: 20px;
+        min-height: 45px;
+        font-size: 13px;
+        line-height: 15;
+        font-weight: normal;
+    }
+
+    .login-card .login-btn {
+        
+        background-color: #000;
+        border-radius: 4px;
+        font-size: 17px;
+        font-weight: bold;
+        line-height: 20px;
+        color: #fff;
+        margin-bottom: 24px;
+    }
+
+        .login-card .login-btn:hover {
+            border: 1px solid #000;
+            background-color: transparent;
+            color: #000;
+        }
+
+    .login-card .forgot-password-link {
+        font-size: 14px;
+        color: #919aa3;
+        margin-bottom: 12px;
+    }
+
+    .login-card-footer-text {
+        font-size: 16px;
+        color: #0d2366;
+        margin-bottom: 60px;
+    }
+
+    .login-card-footer-nav a {
+        font-size: 14px;
+        color: #919aa3;
+    }
+
+    .footer-link {
+        position: absolute;
+        bottom: 1rem;
+        text-align: center;
+        width: 100%;
+    }
+</style>
+
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0" style="margin-top:100px;">
+    <div class="container">
+        <div class="card login-card">
+            <div class="row no-gutters">
+                <div class="col-md-5">
+
+
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+
+                        <p class="login-card-description">Sign into your account</p>
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group col-md-12 ">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control",placeholder="Email" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-12">
+
+
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                @Html.ActionLink("Forgot Password?", "ForgotPassword")
+                            </div>
+
+
+
+                            <input type="submit" value="Log in" class="btn  login-btn" />
+
+
+                        }
+
+                        <p class="login-card-footer-text">
+                            Don't have an account?
+                            @Html.ActionLink("Register Here", "Register")
+                         
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
